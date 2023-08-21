@@ -1,0 +1,41 @@
+<dx-data-grid
+  id="orders"
+  [dataSource]="customers"
+  keyExpr="ID"
+  [allowColumnResizing]="true"
+  [showBorders]="true"
+  [columnResizingMode]="columnResizingMode"
+  [columnMinWidth]="50"
+  [columnAutoWidth]="true"
+  [columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']"
+>
+  <dxo-state-storing
+    [enabled]="true"
+    type="localStorage"
+    storageKey="storage"
+  ></dxo-state-storing>
+
+  <dxi-column type="buttons" caption="actions" [fixed]="true" [width]="80">
+    <dxi-button template="buttonTemplate"></dxi-button>
+
+    <div *dxTemplate="let data of 'buttonTemplate'">
+      <button>...</button>
+    </div>
+  </dxi-column>
+</dx-data-grid>
+
+<div class="options">
+  <div class="caption">Options</div>
+  <div class="option">
+    <span>Column resizing mode:</span>
+    <dx-select-box
+      id="select-resizing"
+      [items]="resizingModes"
+      [inputAttr]="{ 'aria-label': 'Column Resizing Mode' }"
+      [value]="resizingModes[0]"
+      [width]="250"
+      (onValueChanged)="selectResizing($event)"
+    >
+    </dx-select-box>
+  </div>
+</div>
